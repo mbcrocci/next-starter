@@ -6,7 +6,8 @@ import { bigint, mysqlTableCreator, varchar } from "drizzle-orm/mysql-core";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const mysqlTable = mysqlTableCreator((name) => `next-starter_${name}`);
+export const tableName = (name: string) => `next-starter_${name}`;
+export const mysqlTable = mysqlTableCreator(tableName);
 
 export const user = mysqlTable("user", {
   id: varchar("id", { length: 15 }).primaryKey(),

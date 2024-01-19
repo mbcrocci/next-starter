@@ -1,6 +1,9 @@
+import { getSession } from "@/server/auth";
 import Link from "next/link";
 
-export const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+export const Navbar = async () => {
+  const session = await getSession();
+
   return (
     <nav className="flex w-full flex-row items-center justify-between p-7">
       <Link href="/">
@@ -8,7 +11,7 @@ export const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </Link>
 
       <div className="flex flex-row items-center gap-x-4">
-        {isLoggedIn ? (
+        {!!session ? (
           <>
             <Link href="/profile">My Profile</Link>
             <Link href="/api/auth/logout">Logout</Link>
